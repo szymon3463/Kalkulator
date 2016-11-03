@@ -17,4 +17,5 @@ public:
 	~Silnia();
 	Silnia();
 	Silnia(int i);
+	Silnia(const Silnia & l);
 };
