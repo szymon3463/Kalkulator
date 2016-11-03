@@ -266,7 +266,9 @@ void operator++ (Silnia & x)
 			}
 		}
 	}
+
 }
+
 Silnia operator* (Silnia x, int y)
 {
 	Silnia z(x);

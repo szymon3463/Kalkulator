@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "Liczby.h"
+#include "Silnia.h"
 #include <iomanip>      // std::setprecision
 
 MainWindow::MainWindow()
@@ -399,17 +400,16 @@ void MainWindow::ButtonRestSlot()
 {
 	bSigns = true;
 	AddItemToStringList();
-	QString str,liczba = "1";
-	str = vTab[0];
-	int tmp = str.toInt();
+	QString tmp = m_pTextEdit->toPlainText();
+	int liczbaI = tmp.toInt();
 	unsigned int wyn=1;
-	for(unsigned int i=1; i<=tmp; i++)
+	Silnia *sil = new Silnia(liczbaI);
+	for( int i=2; i<liczbaI; i++)
 	{
-		//wyn *= i;
-		//QString::number(liczba.toInt()) *= i;
-		qDebug() <<i <<" " << wyn;
+		wyn *= i;
 	}
-	
+
+	qDebug() << wyn;
 	m_pTextEdit->setText(QString::number(wyn));
 }
 
