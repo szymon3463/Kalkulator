@@ -33,7 +33,7 @@ public:
 	QPushButton * m_pButtonDivision;
 	QPushButton * m_pButtonEqual;
 	QPushButton * m_pButtonPositiveNegative;
-	QPushButton * m_pButtonRest;
+	QPushButton * m_pButtonStrong;
 	QPushButton * m_pButtonElement;
 	QPushButton * m_pButtonPower2;
 	QPushButton * m_pButton1Division;
@@ -70,7 +70,7 @@ public:
 	void ButtonDivisionSlot();
 	void ButtonEqualSlot();
 	void ButtonPositiveNegativeSlot();
-	void ButtonRestSlot();
+	void ButtonStrongSlot();
 	void ButtonElementSlot();
 	void ButtonPower2Slot();
 	void Button1DivisionSlot();

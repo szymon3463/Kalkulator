@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[26];
-    char stringdata[375];
+    char stringdata[377];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,10 +51,10 @@ QT_MOC_LITERAL(18, 218, 24), // "ButtonMultiplicationSlot"
 QT_MOC_LITERAL(19, 243, 18), // "ButtonDivisionSlot"
 QT_MOC_LITERAL(20, 262, 15), // "ButtonEqualSlot"
 QT_MOC_LITERAL(21, 278, 26), // "ButtonPositiveNegativeSlot"
-QT_MOC_LITERAL(22, 305, 14), // "ButtonRestSlot"
-QT_MOC_LITERAL(23, 320, 17), // "ButtonElementSlot"
-QT_MOC_LITERAL(24, 338, 16), // "ButtonPower2Slot"
-QT_MOC_LITERAL(25, 355, 19) // "Button1DivisionSlot"
+QT_MOC_LITERAL(22, 305, 16), // "ButtonStrongSlot"
+QT_MOC_LITERAL(23, 322, 17), // "ButtonElementSlot"
+QT_MOC_LITERAL(24, 340, 16), // "ButtonPower2Slot"
+QT_MOC_LITERAL(25, 357, 19) // "Button1DivisionSlot"
 
     },
     "MainWindow\0Button1Slot\0\0Button2Slot\0"
@@ -65,7 +65,7 @@ QT_MOC_LITERAL(25, 355, 19) // "Button1DivisionSlot"
     "ButtonDeleteSlot\0ButtonAddSlot\0"
     "ButtonSubSlot\0ButtonMultiplicationSlot\0"
     "ButtonDivisionSlot\0ButtonEqualSlot\0"
-    "ButtonPositiveNegativeSlot\0ButtonRestSlot\0"
+    "ButtonPositiveNegativeSlot\0ButtonStrongSlot\0"
     "ButtonElementSlot\0ButtonPower2Slot\0"
     "Button1DivisionSlot"
 };
@@ -164,7 +164,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 17: _t->ButtonDivisionSlot(); break;
         case 18: _t->ButtonEqualSlot(); break;
         case 19: _t->ButtonPositiveNegativeSlot(); break;
-        case 20: _t->ButtonRestSlot(); break;
+        case 20: _t->ButtonStrongSlot(); break;
         case 21: _t->ButtonElementSlot(); break;
         case 22: _t->ButtonPower2Slot(); break;
         case 23: _t->Button1DivisionSlot(); break;

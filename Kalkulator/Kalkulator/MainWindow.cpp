@@ -21,8 +21,8 @@ MainWindow::MainWindow()
 		m_pTextEdit = new QTextEdit();
 		pHBoxLayout->addWidget(m_pTextEdit);
 
-		m_pButtonRest = new QPushButton("!");
-		pHBoxLayout2->addWidget(m_pButtonRest);
+		m_pButtonStrong = new QPushButton("!");
+		pHBoxLayout2->addWidget(m_pButtonStrong);
 
 		m_pButtonElement = new QPushButton("sqrt");
 		pHBoxLayout2->addWidget(m_pButtonElement);
@@ -124,7 +124,7 @@ MainWindow::MainWindow()
 		connect(m_pButtonElement, SIGNAL(clicked()), this, SLOT(ButtonElementSlot()));
 		connect(m_pButtonPower2, SIGNAL(clicked()), this, SLOT(ButtonPower2Slot()));
 		connect(m_pButton1Division, SIGNAL(clicked()), this, SLOT(Button1DivisionSlot()));
-		connect(m_pButtonRest, SIGNAL(clicked()), this, SLOT(ButtonRestSlot()));
+		connect(m_pButtonStrong, SIGNAL(clicked()), this, SLOT(ButtonStrongSlot()));
 
 		setCentralWidget(pMainWidget);
 }
@@ -396,7 +396,7 @@ void MainWindow::Button1DivisionSlot()
 	m_pTextEdit->setText(QString::number(1 / m_pTextEdit->toPlainText().toDouble()));
 }
 
-void MainWindow::ButtonRestSlot()
+void MainWindow::ButtonStrongSlot()
 {
 	bSigns = true;
 	AddItemToStringList();
@@ -404,12 +404,6 @@ void MainWindow::ButtonRestSlot()
 	int liczbaI = tmp.toInt();
 	unsigned int wyn=1;
 	Silnia *sil = new Silnia(liczbaI);
-	for( int i=2; i<liczbaI; i++)
-	{
-		wyn *= i;
-	}
-
-	qDebug() << wyn;
+	wyn = sil->ObliczSilnie(liczbaI);
 	m_pTextEdit->setText(QString::number(wyn));
 }
-
