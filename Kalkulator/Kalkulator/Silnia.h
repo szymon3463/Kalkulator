@@ -9,7 +9,7 @@ using namespace std;
 class Silnia
 {
 public:
-	vector <int> Vt;
+	vector <int> VtSilnia;
 	int sign;
 	int podstawa;
 	int ilosc;
@@ -17,5 +17,6 @@ public:
 	~Silnia();
 	Silnia();
 	Silnia(int i);
-	Silnia(const Silnia & l);
+
+	long long ObliczSilnie(int liczbaI);
 };

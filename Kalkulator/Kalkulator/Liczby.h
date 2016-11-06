@@ -15,7 +15,7 @@ public:
 	
 	~Liczby() { Vt.clear(); }
 	Liczby();
-	Liczby(QString liczba);
+	Liczby(int liczba);
 
 	void FromStringToInt();
 };
