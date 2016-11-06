@@ -49,8 +49,30 @@ Silnia::Silnia(int i)
 			c /= podstawa;
 		}
 	}
+	Silnia(const Silnia & s)
+	{
+		sign = s.sign;
+		VtSilnia.clear();
+		for (unsigned i = 0; i<s.VtSilnia.size(); ++i)
+		{
+			VtSilnia.push_back(s.VtSilnia[i]);
+		}
+	}
 
-	ObliczSilnie(i);
+	Silnia &operator= (const Silnia &s)
+	{
+		if (this != &s)
+		{
+			sign = s.sign;
+			VtSilnia.clear();
+			for (unsigned i = 0; i<s.VtSilnia.size(); ++i)
+			{
+				VtSilnia.push_back(l.VtSilnia[i]);
+			}
+		}
+		return *this;
+	}
+
 }
 
 long long Silnia::ObliczSilnie(int liczbaI)
