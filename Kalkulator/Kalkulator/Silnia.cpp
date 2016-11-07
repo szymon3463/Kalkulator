@@ -14,6 +14,9 @@ Silnia::Silnia()
 
 Silnia::Silnia(int i)
 {
+	sign = 0;
+	podstawa = 1000000000;
+	ilosc = 9;
 	int c = 0;
 	if (i>podstawa - 1)
 	{ // ładujemy wiecej niz 1 raz
@@ -49,7 +52,21 @@ Silnia::Silnia(int i)
 			c /= podstawa;
 		}
 	}
-	Silnia(const Silnia & s)
+}
+
+Silnia::Silnia(const Silnia & s)
+{
+	sign = s.sign;
+	VtSilnia.clear();
+	for (unsigned i = 0; i<s.VtSilnia.size(); ++i)
+	{
+		VtSilnia.push_back(s.VtSilnia[i]);
+	}
+}
+/*
+Silnia & Silnia::operator= (const Silnia &s)
+{
+	if (this != &s)
 	{
 		sign = s.sign;
 		VtSilnia.clear();
@@ -58,31 +75,16 @@ Silnia::Silnia(int i)
 			VtSilnia.push_back(s.VtSilnia[i]);
 		}
 	}
-
-	Silnia &operator= (const Silnia &s)
-	{
-		if (this != &s)
-		{
-			sign = s.sign;
-			VtSilnia.clear();
-			for (unsigned i = 0; i<s.VtSilnia.size(); ++i)
-			{
-				VtSilnia.push_back(l.VtSilnia[i]);
-			}
-		}
-		return *this;
-	}
-
+	return *this;
 }
-
-long long Silnia::ObliczSilnie(int liczbaI)
+*/
+Silnia & Silnia::ObliczSilnie(int liczbaI)
 {
-	//Silnia s;
+	Silnia s(liczbaI);
 	long long tmp=1;
 	for (int i = 2; i < liczbaI; i++)
 	{
-		tmp = tmp * i;
+		s = s * i;
 	}
-	qDebug() <<"tmp" << tmp;
-	return tmp;
+	return s;
 }
