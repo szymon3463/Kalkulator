@@ -369,10 +369,8 @@ void MainWindow::ButtonEqualSlot()
 			}
 		}
 	}
-	
 	Liczby *Li = new Liczby(setprecision(wynik)._Manarg);
-	m_pTextEdit->setText(QString::number(setprecision(wynik)._Manarg));
-	tmpWynik = 0;
+	m_pTextEdit->setText(QString::number(wynik));
 	bSigns = true;
 }
 

@@ -17,6 +17,7 @@ public:
 	Liczby();
 	Liczby(int liczba);
 	Liczby(const Liczby &l);
+
 	friend Liczby operator* (Liczby l, int y)
 	{
 		Liczby Licz(l);
@@ -31,7 +32,6 @@ public:
 		{
 			Licz.VtLiczby.push_back(c % Licz.podstawa);
 			c /= Licz.podstawa;
-
 		}
 		return Licz;
 	}
@@ -46,11 +46,9 @@ public:
 			for (unsigned int j = 1; j<i; ++j)
 			{
 				pom2.VtLiczby.push_back(0);
-
 			}
 			if (i != 0) { pom.VtLiczby.insert(pom.VtLiczby.begin(), pom2.VtLiczby.begin(), pom2.VtLiczby.end()); }
 			Licz = Licz + pom;
-
 		}
 		Licz.sign = (x.sign + y.sign) % 2;
 		return Licz;
@@ -100,7 +98,6 @@ public:
 				l = x - y;
 				l.sign = (l.sign + 1) % 2;
 			}
-
 			return l;
 		}
 	}
@@ -158,25 +155,21 @@ public:
 			Liczby tmp = x + y;
 			return tmp;
 		}
-		else
-		if (x.sign == 1 && y.sign == 0)
+		else if (x.sign == 1 && y.sign == 0)
 		{ // dodanie 2 liczb ujemnych 1 ujemna 1 dodatnia
 			x.sign = 1;
 			y.sign = 1;
 			Liczby tmp = x + y;
 			return tmp;
 		}
-		else
-
-		if (x.sign == 0 && y.sign == 1)
+		else if (x.sign == 0 && y.sign == 1)
 		{ // dodanie 2 liczb ujemnych 1 ujemna 1 dodatnia
 			x.sign = 0;
 			y.sign = 0;
 			Liczby tmp = x + y;
 			return tmp;
 		}
-		else
-		if (x.sign == 0 && y.sign == 0)
+		else if (x.sign == 0 && y.sign == 0)
 		{
 			Liczby Licz(x);
 			//cout << "\nLiczba z"<<z<< endl;
@@ -188,21 +181,17 @@ public:
 			//cout << "Size z = " << z.t.size();
 			for (unsigned int i = 0; i<y.VtLiczby.size(); ++i)
 			{
-
 				if (Licz.VtLiczby.size() <= i){ Licz.VtLiczby.push_back(0); } //cout << "dodaje"; }
 				//cout << "\nZ.t["<<i<<"] = " << z.t[i] << "\tminus" << "\ty.t["<<i<<"] = " << y.t[i];
 				Licz.VtLiczby[i] = Licz.VtLiczby[i] - y.VtLiczby[i];
 				//cout << "\nZ.t["<<i<<"] = " << z.t[i];
 				if (Licz.VtLiczby[i] < 0)
 				{
-
 					// jesli mniejsze niz 0 to musimy pozyczyc
 					if (Licz.VtLiczby.size() <= i + 1)
 					{
 						// nie mamy z czego pozyczac wiec stajemy sie liczba ujemna
 						Licz.sign = 1;
-
-
 					}
 					else
 					{

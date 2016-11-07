@@ -7,7 +7,6 @@ Liczby::Liczby()
 	sign = 0;
 	podstawa = 1000000000;
 	ilosc = 9;
-
 }
 
 Liczby::Liczby(int liczba)

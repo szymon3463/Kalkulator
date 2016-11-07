@@ -33,7 +33,6 @@ public:
 		{
 			Sil.VtSilnia.push_back(c % Sil.podstawa);
 			c /= Sil.podstawa;
-
 		}
 		return Sil;
 	}
@@ -48,11 +47,9 @@ public:
 			for (unsigned int j = 1; j<i; ++j)
 			{
 				pom2.VtSilnia.push_back(0);
-
 			}
 			if (i != 0) { pom.VtSilnia.insert(pom.VtSilnia.begin(), pom2.VtSilnia.begin(), pom2.VtSilnia.end()); }
 			Sil = Sil + pom;
-
 		}
 		Sil.sign = (x.sign + y.sign) % 2;
 		return Sil;
@@ -83,7 +80,6 @@ public:
 					Sil.VtSilnia[i] = tmp;
 				}
 			}
-
 			return Sil;
 		} // gdy liczby sa tych samych znakow
 		else // kiedy sa roznych znakow
@@ -132,7 +128,7 @@ public:
 		else
 		{ // uwzgledniamy liczby ujemne
 			s.VtSilnia[0] -= 1;
-			for (int i = s.VtSilnia.size() - 1; i >= 0; --i)
+			for (unsigned int i = s.VtSilnia.size() - 1; i >= 0; --i)
 			{
 				if (s.VtSilnia[i] < 0)
 				{
@@ -161,25 +157,21 @@ public:
 			Silnia tmp = x + y;
 			return tmp;
 		}
-		else
-		if (x.sign == 1 && y.sign == 0)
+		else if (x.sign == 1 && y.sign == 0)
 		{ // dodanie 2 liczb ujemnych 1 ujemna 1 dodatnia
 			x.sign = 1;
 			y.sign = 1;
 			Silnia tmp = x + y;
 			return tmp;
 		}
-		else
-
-		if (x.sign == 0 && y.sign == 1)
+		else if (x.sign == 0 && y.sign == 1)
 		{ // dodanie 2 liczb ujemnych 1 ujemna 1 dodatnia
 			x.sign = 0;
 			y.sign = 0;
 			Silnia tmp = x + y;
 			return tmp;
 		}
-		else
-		if (x.sign == 0 && y.sign == 0)
+		else if (x.sign == 0 && y.sign == 0)
 		{
 			Silnia Sil(x);
 			//cout << "\nLiczba z"<<z<< endl;
@@ -191,21 +183,17 @@ public:
 			//cout << "Size z = " << z.t.size();
 			for (unsigned int i = 0; i<y.VtSilnia.size(); ++i)
 			{
-
 				if (Sil.VtSilnia.size() <= i){ Sil.VtSilnia.push_back(0); } //cout << "dodaje"; }
 				//cout << "\nZ.t["<<i<<"] = " << z.t[i] << "\tminus" << "\ty.t["<<i<<"] = " << y.t[i];
 				Sil.VtSilnia[i] = Sil.VtSilnia[i] - y.VtSilnia[i];
 				//cout << "\nZ.t["<<i<<"] = " << z.t[i];
 				if (Sil.VtSilnia[i] < 0)
 				{
-
 					// jesli mniejsze niz 0 to musimy pozyczyc
 					if (Sil.VtSilnia.size() <= i + 1)
 					{
 						// nie mamy z czego pozyczac wiec stajemy sie liczba ujemna
 						Sil.sign = 1;
-
-
 					}
 					else
 					{
