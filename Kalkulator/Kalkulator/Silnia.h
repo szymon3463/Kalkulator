@@ -24,7 +24,7 @@ public:
 		Silnia Sil(s);
 		if (y < 0) Sil.sign = (Sil.sign + 1) % 2;
 		int c = 0;
-		for (int i = 0; i < Sil.VtSilnia.size(); i++)
+		for (unsigned int i = 0; i < Sil.VtSilnia.size(); i++)
 		{
 			Sil.VtSilnia[i] = int(((long long)(Sil.VtSilnia[i]) * y + c) % Sil.podstawa);
 			c = int(((long long)(Sil.VtSilnia[i]) * y + c) / Sil.podstawa);
@@ -41,11 +41,11 @@ public:
 	friend Silnia operator* (Silnia x, Silnia y)
 	{
 		Silnia Sil(0);
-		for (int i = 0; i < y.VtSilnia.size(); ++i)
+		for (unsigned int i = 0; i < y.VtSilnia.size(); ++i)
 		{
 			Silnia pom(x * y.VtSilnia[i]);
 			Silnia pom2(0);
-			for (int j = 1; j<i; ++j)
+			for (unsigned int j = 1; j<i; ++j)
 			{
 				pom2.VtSilnia.push_back(0);
 
@@ -63,7 +63,7 @@ public:
 		if ((x.sign == 1 && y.sign == 1) || (x.sign == 0 && y.sign == 0))
 		{
 			Silnia Sil(x);
-			for (int i = 0; i<y.VtSilnia.size(); ++i)
+			for (unsigned int i = 0; i<y.VtSilnia.size(); ++i)
 			{
 				if (Sil.VtSilnia.size() == i) { Sil.VtSilnia.push_back(0); }
 				Sil.VtSilnia[i] = Sil.VtSilnia[i] + y.VtSilnia[i];
@@ -189,7 +189,7 @@ public:
 			if (x<y) { Sil = y; Sil.sign = 1; y = x; }
 
 			//cout << "Size z = " << z.t.size();
-			for (int i = 0; i<y.VtSilnia.size(); ++i)
+			for (unsigned int i = 0; i<y.VtSilnia.size(); ++i)
 			{
 
 				if (Sil.VtSilnia.size() <= i){ Sil.VtSilnia.push_back(0); } //cout << "dodaje"; }
@@ -209,7 +209,7 @@ public:
 					}
 					else
 					{
-						int j = i + 1;
+						unsigned int j = i + 1;
 						while (j<Sil.VtSilnia.size() && j != i) // szuakamy pozyczki
 						{
 							if (Sil.VtSilnia[j] > 0) // jesli znajdujemy

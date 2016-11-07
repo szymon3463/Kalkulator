@@ -59,17 +59,3 @@ Liczby::Liczby(const Liczby &l)
 		VtLiczby.push_back(l.VtLiczby[i]);
 	}
 }
-/*
-Liczby & Liczby::operator=(const Liczby &l)
-{
-	if (this != &l)
-	{
-		sign = l.sign;
-		VtLiczby.clear();
-		for (unsigned i = 0; i<l.VtLiczby.size(); ++i)
-		{
-			VtLiczby.push_back(l.VtLiczby[i]);
-		}
-	}
-	return *this;
-}*/

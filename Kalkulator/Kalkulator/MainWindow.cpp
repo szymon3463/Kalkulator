@@ -378,7 +378,8 @@ void MainWindow::ButtonEqualSlot()
 
 void MainWindow::ButtonPositiveNegativeSlot()
 {
-	m_pTextEdit->setText(QString::number((-1)* m_pTextEdit->toPlainText().toDouble()));
+	double wyn = m_pTextEdit->toPlainText().toDouble() * (-1);
+	m_pTextEdit->setText(QString::number(setprecision(wyn)._Manarg));
 }
 
 void MainWindow::ButtonElementSlot()
