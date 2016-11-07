@@ -404,6 +404,6 @@ void MainWindow::ButtonStrongSlot()
 	int liczbaI = tmp.toInt();
 	unsigned int wyn=1;
 	Silnia *sil = new Silnia(liczbaI);
-	wyn = sil->ObliczSilnie(liczbaI);
+	(Silnia)wyn = sil->ObliczSilnie(liczbaI);
 	m_pTextEdit->setText(QString::number(wyn));
 }
