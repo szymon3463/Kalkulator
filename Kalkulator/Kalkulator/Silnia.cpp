@@ -4,6 +4,7 @@ Silnia::~Silnia()
 {
 	VtSilnia.clear();
 }
+
 Silnia::Silnia()
 {
 	VtSilnia.push_back(0);
@@ -63,7 +64,7 @@ Silnia::Silnia(const Silnia & s)
 
 Silnia & Silnia::ObliczSilnie(int liczbaI)
 {
-	Silnia s(liczbaI);
+	Silnia s(1);
 	for (int i = 2; i < liczbaI; i++)
 	{
 		s = s * i;

@@ -328,8 +328,16 @@ void MainWindow::ButtonEqualSlot()
 			sWyr = vTab[i];
 			if ( sWyr.contains("*") )
 			{
-				wynik = vTab[i-1].toDouble() * vTab[i+1].toDouble();
-				vTab[i] = QString::number(wynik).toDouble();
+				Liczby l1(vTab[i-1]);
+				l1.DebugToConsole();
+
+				Liczby l2(vTab[i+1]);
+				l2.DebugToConsole();
+
+				l1 = l1 * l2;
+				l1.DebugToConsole();
+
+				vTab[i] = l1.ToString();
 				vTab.removeAt(i+1);
 				vTab.removeAt(i-1);
 				bFound = true;
@@ -337,8 +345,16 @@ void MainWindow::ButtonEqualSlot()
 			}
 			else if (sWyr.contains("/"))
 			{
-				wynik = vTab[i-1].toDouble() / vTab[i+1].toDouble();
-				vTab[i] = QString::number(wynik);
+				Liczby l1(vTab[i - 1]);
+				l1.DebugToConsole();
+
+				Liczby l2(vTab[i + 1]);
+				l2.DebugToConsole();
+
+				l1 = l1 / l2;
+				l1.DebugToConsole();
+
+				vTab[i] = l1.ToString();
 				vTab.removeAt(i+1);
 				vTab.removeAt(i-1);
 				bFound = true;
@@ -353,24 +369,41 @@ void MainWindow::ButtonEqualSlot()
 			sWyr = vTab[i];
 			if (sWyr.contains("+"))
 			{
-				wynik = vTab[i-1].toDouble() + vTab[i+1].toDouble();
-				vTab[i] = QString::number(wynik);
+				Liczby l1(vTab[i - 1]);
+				l1.DebugToConsole();
+
+				Liczby l2(vTab[i + 1]);
+				l2.DebugToConsole();
+
+				l1 = l1 + l2;
+				l1.DebugToConsole();
+
+				vTab[i] = l1.ToString();
 				vTab.removeAt(i+1);
 				vTab.removeAt(i-1);
 				break;
 			}
 			else if (sWyr.contains("-"))
 			{
-				wynik = vTab[i-1].toDouble() - vTab[i+1].toDouble();
-				vTab[i] = QString::number(wynik);
+				Liczby l1(vTab[i - 1]);
+				l1.DebugToConsole();
+
+				Liczby l2(vTab[i + 1]);
+				l2.DebugToConsole();
+
+				l1 = l1 - l2;
+				l1.DebugToConsole();
+
+				vTab[i] = l1.ToString();
 				vTab.removeAt(i+1);
 				vTab.removeAt(i-1);
 				break;
 			}
 		}
 	}
-	Liczby *Li = new Liczby(setprecision(wynik)._Manarg);
-	m_pTextEdit->setText(QString::number(wynik));
+
+	Liczby wyn(vTab[0]);
+	m_pTextEdit->setText( wyn.ToString() );
 	bSigns = true;
 }
 
@@ -401,8 +434,7 @@ void MainWindow::ButtonStrongSlot()
 	AddItemToStringList();
 	QString tmp = m_pTextEdit->toPlainText();
 	int liczbaI = tmp.toInt();
-	unsigned int wyn=1;
 	Silnia *sil = new Silnia(liczbaI);
-	(Silnia)wyn = sil->ObliczSilnie(liczbaI);
-	m_pTextEdit->setText(QString::number(wyn));
+	sil->ObliczSilnie(liczbaI);
+	m_pTextEdit->setText("sil->ObliczSilnie(liczbaI)");
 }
