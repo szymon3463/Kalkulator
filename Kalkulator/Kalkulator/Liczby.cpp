@@ -456,10 +456,30 @@ QString Liczby::ToString()
 Liczby Liczby::Silnia()
 {
 	Liczby l(1);
-	int nTmp = VtLiczby[0];
+	int nTmp = VtLiczby[0];   //za³ozenie ze podana liczba miesci sie w incie
 	for (int i = 2; i <= nTmp; i++)
 	{
 		l = l*i;
 	}
 	return l;
 }
+
+Liczby Liczby::Potega()
+{
+	int nTmp = VtLiczby[0];
+	Liczby l(nTmp);
+	
+	l = l*l;
+	qDebug() << l.ToString();
+	return l;
+}
+
+Liczby Liczby::Pierwiastek()
+{
+	double nTmp = VtLiczby[0];
+	Liczby l(nTmp);
+
+	l = sqrtl(nTmp);
+	return l;
+}
+

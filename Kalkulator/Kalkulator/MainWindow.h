@@ -32,11 +32,8 @@ public:
 	QPushButton * m_pButtonMultiplication;
 	QPushButton * m_pButtonDivision;
 	QPushButton * m_pButtonEqual;
-	QPushButton * m_pButtonPositiveNegative;
 	QPushButton * m_pButtonStrong;
-	QPushButton * m_pButtonElement;
 	QPushButton * m_pButtonPower2;
-	QPushButton * m_pButton1Division;
 
 public:
 	MainWindow();
@@ -69,11 +66,8 @@ public:
 	void ButtonMultiplicationSlot();
 	void ButtonDivisionSlot();
 	void ButtonEqualSlot();
-	void ButtonPositiveNegativeSlot();
 	void ButtonStrongSlot();
-	void ButtonElementSlot();
 	void ButtonPower2Slot();
-	void Button1DivisionSlot();
 };
 
 #endif // MAINWINDOW_H

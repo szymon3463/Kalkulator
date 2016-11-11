@@ -37,4 +37,6 @@ public:
 
 	QString ToString();
 	Liczby Silnia();
+	Liczby Potega();
+	Liczby Pierwiastek();
 };

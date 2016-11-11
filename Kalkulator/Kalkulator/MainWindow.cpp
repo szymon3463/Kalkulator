@@ -23,14 +23,8 @@ MainWindow::MainWindow()
 		m_pButtonStrong = new QPushButton("!");
 		pHBoxLayout2->addWidget(m_pButtonStrong);
 
-		m_pButtonElement = new QPushButton("sqrt");
-		pHBoxLayout2->addWidget(m_pButtonElement);
-
 		m_pButtonPower2 = new QPushButton("x^2");
 		pHBoxLayout2->addWidget(m_pButtonPower2);
-
-		m_pButton1Division = new QPushButton("1/x");
-		pHBoxLayout2->addWidget(m_pButton1Division);
 
 		m_pButtonCE = new QPushButton("CE");
 		pHBoxLayout3->addWidget(m_pButtonCE);
@@ -80,9 +74,6 @@ MainWindow::MainWindow()
 		m_pButtonAdd = new QPushButton("+");
 		pHBoxLayout6->addWidget(m_pButtonAdd);
 
-		m_pButtonPositiveNegative = new QPushButton("+/-");
-		pHBoxLayout7->addWidget(m_pButtonPositiveNegative);
-
 		m_pButton0 = new QPushButton("0");
 		pHBoxLayout7->addWidget(m_pButton0);
 
@@ -119,10 +110,7 @@ MainWindow::MainWindow()
 		connect(m_pButtonMultiplication, SIGNAL(clicked()), this, SLOT(ButtonMultiplicationSlot()));
 		connect(m_pButtonDivision, SIGNAL(clicked()), this, SLOT(ButtonDivisionSlot()));
 		connect(m_pButtonEqual, SIGNAL(clicked()), this, SLOT(ButtonEqualSlot()));
-		connect(m_pButtonPositiveNegative, SIGNAL(clicked()), this, SLOT(ButtonPositiveNegativeSlot()));
-		connect(m_pButtonElement, SIGNAL(clicked()), this, SLOT(ButtonElementSlot()));
 		connect(m_pButtonPower2, SIGNAL(clicked()), this, SLOT(ButtonPower2Slot()));
-		connect(m_pButton1Division, SIGNAL(clicked()), this, SLOT(Button1DivisionSlot()));
 		connect(m_pButtonStrong, SIGNAL(clicked()), this, SLOT(ButtonStrongSlot()));
 
 		setCentralWidget(pMainWidget);
@@ -406,33 +394,16 @@ void MainWindow::ButtonEqualSlot()
 	bSigns = true;
 }
 
-void MainWindow::ButtonPositiveNegativeSlot()
-{
-	double wyn = m_pTextEdit->toPlainText().toDouble() * (-1);
-	m_pTextEdit->setText(QString::number(setprecision(wyn)._Manarg));
-}
-
-void MainWindow::ButtonElementSlot()
-{
-	m_pTextEdit->setText(QString::number(qSqrt(m_pTextEdit->toPlainText().toDouble())));
-}
-
 void MainWindow::ButtonPower2Slot()
 {
-	m_pTextEdit->setText(QString::number(qPow(m_pTextEdit->toPlainText().toDouble() ,2)));
-}
-
-void MainWindow::Button1DivisionSlot()
-{
-	m_pTextEdit->setText(QString::number(1 / m_pTextEdit->toPlainText().toDouble()));
+	Liczby l(QString::number(m_pTextEdit->toPlainText().toDouble()));
+	m_pTextEdit->setText(l.Potega().ToString());
 }
 
 void MainWindow::ButtonStrongSlot()
 {
 	bSigns = true;
 	AddItemToStringList();
-	QString tmp = m_pTextEdit->toPlainText();
-	int liczbaI = tmp.toInt();
-	Liczby l(liczbaI);
+	Liczby l(m_pTextEdit->toPlainText().toInt());
 	m_pTextEdit->setText(l.Silnia().ToString());
 }
