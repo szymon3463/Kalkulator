@@ -359,11 +359,11 @@ Liczby Liczby::operator* (const int & y)
 		this->VtLiczby[i] = int(((long long)(this->VtLiczby[i]) * y + c) % this->podstawa);
 		c = int(((long long)(this->VtLiczby[i]) * y + c) / this->podstawa);
 	}
-	while (c > 0)
+	/*while (c > 0)
 	{
 		this->VtLiczby.push_back(c % this->podstawa);
 		c /= this->podstawa;
-	}
+	}*/
 	return *this;
 }
 
@@ -456,7 +456,7 @@ QString Liczby::ToString()
 Liczby Liczby::Silnia()
 {
 	Liczby l(1);
-	int nTmp = VtLiczby[0];   //za³ozenie ze podana liczba miesci sie w incie
+	int nTmp = VtLiczby[0];  
 	for (int i = 2; i <= nTmp; i++)
 	{
 		l = l*i;
@@ -471,15 +471,6 @@ Liczby Liczby::Potega()
 	
 	l = l*l;
 	qDebug() << l.ToString();
-	return l;
-}
-
-Liczby Liczby::Pierwiastek()
-{
-	double nTmp = VtLiczby[0];
-	Liczby l(nTmp);
-
-	l = sqrtl(nTmp);
 	return l;
 }
 
