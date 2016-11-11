@@ -84,7 +84,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="moc_mainwindow.cpp" />
-    <ClCompile Include="Silnia.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="MainWindow.h">
@@ -94,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Liczby.h" />
-    <ClInclude Include="Silnia.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

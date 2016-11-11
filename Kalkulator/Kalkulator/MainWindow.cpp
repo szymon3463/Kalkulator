@@ -1,6 +1,5 @@
 #include "MainWindow.h"
 #include "Liczby.h"
-#include "Silnia.h"
 #include <iomanip>      // std::setprecision
 
 MainWindow::MainWindow()
@@ -434,7 +433,6 @@ void MainWindow::ButtonStrongSlot()
 	AddItemToStringList();
 	QString tmp = m_pTextEdit->toPlainText();
 	int liczbaI = tmp.toInt();
-	Silnia *sil = new Silnia(liczbaI);
-	sil->ObliczSilnie(liczbaI);
-	m_pTextEdit->setText("sil->ObliczSilnie(liczbaI)");
+	Liczby l(liczbaI);
+	m_pTextEdit->setText(l.Silnia().ToString());
 }

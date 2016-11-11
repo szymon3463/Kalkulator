@@ -36,4 +36,5 @@ public:
 	void DebugToConsole();
 
 	QString ToString();
+	Liczby Silnia();
 };

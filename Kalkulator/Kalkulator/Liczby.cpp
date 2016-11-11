@@ -452,3 +452,14 @@ QString Liczby::ToString()
 
 	return sTMP;
 }
+
+Liczby Liczby::Silnia()
+{
+	Liczby l(1);
+	int nTmp = VtLiczby[0];
+	for (int i = 2; i <= nTmp; i++)
+	{
+		l = l*i;
+	}
+	return l;
+}

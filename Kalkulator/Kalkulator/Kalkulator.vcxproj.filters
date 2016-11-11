@@ -30,9 +30,6 @@
     <ClCompile Include="Liczby.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Silnia.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="MainWindow.h">
@@ -41,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Liczby.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Silnia.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
