@@ -26,6 +26,9 @@ MainWindow::MainWindow()
 		m_pButtonPower2 = new QPushButton("x^2");
 		pHBoxLayout2->addWidget(m_pButtonPower2);
 
+		m_pButtonPowerY = new QPushButton("x^y");
+		pHBoxLayout2->addWidget(m_pButtonPowerY);
+
 		m_pButtonCE = new QPushButton("CE");
 		pHBoxLayout3->addWidget(m_pButtonCE);
 
@@ -111,6 +114,7 @@ MainWindow::MainWindow()
 		connect(m_pButtonDivision, SIGNAL(clicked()), this, SLOT(ButtonDivisionSlot()));
 		connect(m_pButtonEqual, SIGNAL(clicked()), this, SLOT(ButtonEqualSlot()));
 		connect(m_pButtonPower2, SIGNAL(clicked()), this, SLOT(ButtonPower2Slot()));
+		connect(m_pButtonPowerY, SIGNAL(clicked()), this, SLOT(ButtonPowerYSlot()));
 		connect(m_pButtonStrong, SIGNAL(clicked()), this, SLOT(ButtonStrongSlot()));
 
 		setCentralWidget(pMainWidget);
@@ -130,6 +134,12 @@ void MainWindow::AddItemToStringList()
 		if (sTmp[i] == '.')
 		{
 			sTmpLiczba+= sTmp[i];
+		}
+		if (sTmp[i] == '^')
+		{
+			vTab.push_back(sTmpLiczba);
+			vTab.push_back("^");
+			sTmpLiczba.clear();
 		}
 		if (sTmp[i] == '*')
 		{
@@ -313,6 +323,21 @@ void MainWindow::ButtonEqualSlot()
 		for (int i = 0; i < vTab.size(); i++)
 		{
 			sWyr = vTab[i];
+			if (sWyr.contains("^"))
+			{
+				Liczby l1(vTab[i - 1]);
+				l1.DebugToConsole();
+				int nLiczba1 = vTab[i - 1].toInt();
+
+				Liczby l2(vTab[i + 1]);
+				l2.DebugToConsole();
+
+				vTab[i] = l1.ToString();
+				vTab.removeAt(i + 1);
+				vTab.removeAt(i - 1);
+				bFound = true;
+				break;
+			}
 			if ( sWyr.contains("*") )
 			{
 				Liczby l1(vTab[i-1]);
@@ -396,14 +421,18 @@ void MainWindow::ButtonEqualSlot()
 
 void MainWindow::ButtonPower2Slot()
 {
-	Liczby l(QString::number(m_pTextEdit->toPlainText().toDouble()));
+	Liczby l(QString::number(m_pTextEdit->toPlainText().toInt()));
 	m_pTextEdit->setText(l.Potega().ToString());
+}
+
+void MainWindow::ButtonPowerYSlot()
+{
+	m_pTextEdit->setText(m_pTextEdit->toPlainText() + "^");
+	bSigns = true;
 }
 
 void MainWindow::ButtonStrongSlot()
 {
-	bSigns = true;
-	AddItemToStringList();
 	Liczby l(m_pTextEdit->toPlainText().toInt());
 	m_pTextEdit->setText(l.Silnia().ToString());
 }

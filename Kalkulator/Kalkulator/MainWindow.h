@@ -34,6 +34,7 @@ public:
 	QPushButton * m_pButtonEqual;
 	QPushButton * m_pButtonStrong;
 	QPushButton * m_pButtonPower2;
+	QPushButton * m_pButtonPowerY;
 
 public:
 	MainWindow();
@@ -68,6 +69,7 @@ public:
 	void ButtonEqualSlot();
 	void ButtonStrongSlot();
 	void ButtonPower2Slot();
+	void ButtonPowerYSlot();
 };
 
 #endif // MAINWINDOW_H

@@ -468,7 +468,7 @@ Liczby Liczby::Potega()
 {
 	int nTmp = VtLiczby[0];
 	Liczby l(nTmp);
-	
+
 	l = l*l;
 	qDebug() << l.ToString();
 	return l;
