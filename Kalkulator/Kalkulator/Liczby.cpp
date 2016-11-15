@@ -359,11 +359,11 @@ Liczby Liczby::operator* (const int & y)
 		this->VtLiczby[i] = int(((long long)(this->VtLiczby[i]) * y + c) % this->podstawa);
 		c = int(((long long)(this->VtLiczby[i]) * y + c) / this->podstawa);
 	}
-	/*while (c > 0)
+	while (c > 0)
 	{
 		this->VtLiczby.push_back(c % this->podstawa);
 		c /= this->podstawa;
-	}*/
+	}
 	return *this;
 }
 
