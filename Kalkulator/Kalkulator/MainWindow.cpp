@@ -329,10 +329,16 @@ void MainWindow::ButtonEqualSlot()
 				l1.DebugToConsole();
 				int nLiczba1 = vTab[i - 1].toInt();
 
-				Liczby l2(vTab[i + 1]);
+				Liczby l2(1);
 				l2.DebugToConsole();
+				int tmp = vTab[i + 1].toInt();
 
-				vTab[i] = l1.ToString();
+				while (tmp--)
+				{
+					l2 = l2 * l1;
+				}
+
+				vTab[i] = l2.ToString();
 				vTab.removeAt(i + 1);
 				vTab.removeAt(i - 1);
 				bFound = true;
