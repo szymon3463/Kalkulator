@@ -241,7 +241,7 @@ Liczby Liczby::operator+ (Liczby &y)
 				}
 				else // wystarczajaca pojemnosc wektora
 				{
-					Licz.VtLiczby[i + 1] += Licz.VtLiczby[i] / Licz.podstawa;
+					Licz.VtLiczby[i+1] = Licz.VtLiczby[i] / Licz.podstawa;
 				}
 				Licz.VtLiczby[i] = tmp;
 			}
@@ -350,19 +350,20 @@ Liczby Liczby::operator/ (const Liczby &y)
 	return *this;
 }
 
-Liczby Liczby::operator* (const int & y)
+Liczby Liczby::operator* ( const int & y)
 {
-	if (y < 0) this->sign = (this->sign + 1) % 2;
+	if (y < 0) sign = (sign + 1) % 2;
 	int c = 0;
-	for (unsigned int i = 0; i < this->VtLiczby.size(); i++)
+	for (unsigned int i = 0; i < VtLiczby.size(); i++)
 	{
-		this->VtLiczby[i] = int(((long long)(this->VtLiczby[i]) * y + c) % this->podstawa);
-		c = int(((long long)(this->VtLiczby[i]) * y + c) / this->podstawa);
+		QString sTmp = QString::number((long long)VtLiczby[i] * y + c);
+		VtLiczby[i] = int(((long long)(VtLiczby[i]) * y + c) % podstawa);
+		c = int((long long)(sTmp.toLongLong() / podstawa));
 	}
 	while (c > 0)
 	{
-		this->VtLiczby.push_back(c % this->podstawa);
-		c /= this->podstawa;
+		VtLiczby.push_back(c % podstawa);
+		c /= podstawa;
 	}
 	return *this;
 }
@@ -391,8 +392,14 @@ void Liczby::DebugToConsole()
 	for (int i = VtLiczby.size() - 1; i >= 0; i--)
 	{
 		QString sMyNumber = QString::number(VtLiczby[i]);
-
-		if (i != VtLiczby.size() - 1)
+		if (VtLiczby[i] == 0)
+		{
+			for (int j = 0; j < ilosc; ++j)
+			{
+				sTMP += "0";
+			}
+		}
+		else if (i != VtLiczby.size() - 1)
 		{
 			if (sMyNumber.size() < 9)
 			{
@@ -401,14 +408,7 @@ void Liczby::DebugToConsole()
 					sTMP += "0";
 				}
 			}
-
-		}
-		if (VtLiczby[i] == 0)
-		{
-			for (int j = 0; j < ilosc; ++j)
-			{
-				sTMP += "0";
-			}
+			sTMP += sMyNumber + " ";
 		}
 		else
 		{
@@ -425,8 +425,14 @@ QString Liczby::ToString()
 	for (int i = VtLiczby.size()-1; i >= 0; i--)
 	{
 		QString sMyNumber = QString::number(VtLiczby[i]);
-
-		if (i != VtLiczby.size() - 1)
+		if (VtLiczby[i] == 0)
+		{
+			for (int j = 0; j < ilosc; ++j)
+			{
+				sTMP += "0";
+			}
+		}
+		else if (i != VtLiczby.size() - 1)
 		{
 			if (sMyNumber.size() < 9 )
 			{
@@ -435,19 +441,13 @@ QString Liczby::ToString()
 					sTMP += "0";
 				}
 			}
-
-		}
-		if (VtLiczby[i] == 0)
-		{
-			for (int j = 0; j < ilosc; ++j)
-			{
-				sTMP += "0";
-			}
+			sTMP += sMyNumber + " ";
 		}
 		else
 		{
 			sTMP += sMyNumber;
 		}
+		
 	}
 
 	return sTMP;

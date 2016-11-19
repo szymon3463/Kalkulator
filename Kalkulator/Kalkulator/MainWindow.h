@@ -46,6 +46,7 @@ public:
 	long double tmpWynik;
 	QString wynikString;
 	double wynik;
+
 	public slots:
 
 	void Button1Slot();

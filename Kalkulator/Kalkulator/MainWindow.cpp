@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "Liczby.h"
-#include <iomanip>      // std::setprecision
+#include <iomanip> 
 
 MainWindow::MainWindow()
 {
@@ -419,7 +419,7 @@ void MainWindow::ButtonEqualSlot()
 			}
 		}
 	}
-
+	qDebug() << vTab[0];
 	Liczby wyn(vTab[0]);
 	m_pTextEdit->setText( wyn.ToString() );
 	bSigns = true;
