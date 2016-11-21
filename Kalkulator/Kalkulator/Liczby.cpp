@@ -7,6 +7,7 @@ Liczby::Liczby()
 	sign = 0;
 	podstawa = 1000000000;
 	ilosc = 9;
+	dlugoc = 0;
 }
 
 Liczby::Liczby(QString sLiczba)
@@ -15,6 +16,7 @@ Liczby::Liczby(QString sLiczba)
 	sign = 0;
 	podstawa = 1000000000;
 	ilosc = 9;
+	dlugoc = 0;
 
 	int nCurrentIndex = sLiczba.length() - 1;
 	while (true)
@@ -36,6 +38,7 @@ Liczby::Liczby(int liczba)
 	sign = 0;
 	podstawa = 1000000000;
 	ilosc = 9;
+	dlugoc = 0;
 
 	//qDebug() <<"liczba" << liczba;
 	int c=0;
@@ -80,6 +83,7 @@ Liczby::Liczby(const Liczby &l)
 	sign = l.sign;
 	podstawa = l.podstawa;
 	ilosc = l.ilosc;
+	dlugoc = l.dlugoc;
 
 	VtLiczby.clear();
 	for (unsigned i = 0; i<l.VtLiczby.size(); ++i)
@@ -222,50 +226,71 @@ bool Liczby::operator> (Liczby &y)
 
 Liczby Liczby::operator+ (Liczby &y)
 {
-	// jesli dodajemy 2 liczby ujemne to nic nie zmieniamy
-	if ((this->sign == 1 && y.sign == 1) || (this->sign == 0 && y.sign == 0))
+	if (this->VtLiczby.size() > y.VtLiczby.size())
 	{
-		Liczby Licz(*this);
-		for (unsigned int i = 0; i<y.VtLiczby.size(); ++i)
+		Liczby z(*this); /* wynik */
+		/* Do dlugosci mniejszej z liczb: */
+		z.dlugoc = min(this->VtLiczby.size(), y.VtLiczby.size());
+		int c = 0; /* na poczatek zerowy bit przeniesienia */
+		for (int i = 0; i < z.dlugoc; i++)
 		{
-			if (Licz.VtLiczby.size() == i) { Licz.VtLiczby.push_back(0); }
-			Licz.VtLiczby[i] = Licz.VtLiczby[i] + y.VtLiczby[i];
-
-			if (Licz.VtLiczby[i] > Licz.podstawa - 1)
-			{
-				unsigned int tmp = Licz.VtLiczby[i] % Licz.podstawa;
-				Licz.VtLiczby[i] -= tmp;
-				if (Licz.VtLiczby.size() <= i) // za mala pojemnosc wektora
-				{
-					Licz.VtLiczby.push_back(Licz.VtLiczby[i] / Licz.podstawa);
-				}
-				else // wystarczajaca pojemnosc wektora
-				{
-					Licz.VtLiczby[i+1] = Licz.VtLiczby[i] / Licz.podstawa;
-				}
-				Licz.VtLiczby[i] = tmp;
-			}
+			z.VtLiczby[i] = (this->VtLiczby[i] + y.VtLiczby[i] + c) % podstawa;
+			c = (this->VtLiczby[i] + y.VtLiczby[i] + c) / podstawa;
 		}
-		return Licz;
-	} // gdy liczby sa tych samych znakow
-	else // kiedy sa roznych znakow
+		/* Jezeli liczba x jest dluzsza: */
+		while (z.dlugoc < this->VtLiczby.size())
+		{
+			z.VtLiczby[z.dlugoc] = (this->VtLiczby[z.dlugoc] + c) % podstawa;
+			c = (this->VtLiczby[z.dlugoc] + c) / podstawa;
+			z.dlugoc++;
+		}
+		/* Jezeli liczba y jest dluzsza: */
+		while (z.dlugoc < y.VtLiczby.size())
+		{
+			z.VtLiczby[z.dlugoc] = (y.VtLiczby[z.dlugoc] + c) % podstawa;
+			c = (y.VtLiczby[z.dlugoc] + c) / podstawa;
+			z.dlugoc++;
+		}
+		/* Jezeli pozostalo jakies przeniesienie (to c=1): */
+		if (c > 0)
+		{
+			z.VtLiczby[z.dlugoc] = c;
+			z.dlugoc++;
+		}
+		return z;
+	}
+	else
 	{
-		Liczby l;
-		if (this->sign == 0)
+		Liczby z(y); /* wynik */
+		/* Do dlugosci mniejszej z liczb: */
+		z.dlugoc = min(this->VtLiczby.size(), y.VtLiczby.size());
+		int c = 0; /* na poczatek zerowy bit przeniesienia */
+		for (int i = 0; i < z.dlugoc; i++)
 		{
-			// x jest dodatni wiec od dodatniej odejmujemy ujemna ze zmienionym znakiem
-			y.sign = 0;
-			l = *this + y;
+			z.VtLiczby[i] = (this->VtLiczby[i] + y.VtLiczby[i] + c) % podstawa;
+			c = (this->VtLiczby[i] + y.VtLiczby[i] + c) / podstawa;
 		}
-		else
+		/* Jezeli liczba x jest dluzsza: */
+		while (z.dlugoc < this->VtLiczby.size())
 		{
-			// y jest dodatni wiec od dodatniego y odejmujemy ujemnego x ze zmienionym znakiem
-			this->sign = 0;
-			y.sign = 0;
-			l = *this + y;
-			l.sign = (l.sign + 1) % 2;
+			z.VtLiczby[z.dlugoc] = (this->VtLiczby[z.dlugoc] + c) % podstawa;
+			c = (this->VtLiczby[z.dlugoc] + c) / podstawa;
+			z.dlugoc++;
 		}
-		return l;
+		/* Jezeli liczba y jest dluzsza: */
+		while (z.dlugoc < y.VtLiczby.size())
+		{
+			z.VtLiczby[z.dlugoc] = (y.VtLiczby[z.dlugoc] + c) % podstawa;
+			c = (y.VtLiczby[z.dlugoc] + c) / podstawa;
+			z.dlugoc++;
+		}
+		/* Jezeli pozostalo jakies przeniesienie (to c=1): */
+		if (c > 0)
+		{
+			z.VtLiczby[z.dlugoc] = c;
+			z.dlugoc++;
+		}
+		return z;
 	}
 }
 
@@ -441,7 +466,7 @@ QString Liczby::ToString()
 					sTMP += "0";
 				}
 			}
-			sTMP += sMyNumber + " ";
+			sTMP += sMyNumber;
 		}
 		else
 		{

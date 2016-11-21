@@ -13,7 +13,8 @@ public:
 	int sign;
 	int podstawa;
 	int ilosc;
-	
+	int dlugoc;
+
 	~Liczby() { VtLiczby.clear(); }
 	Liczby();
 	Liczby(int liczba);
