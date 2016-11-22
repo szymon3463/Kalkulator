@@ -491,8 +491,7 @@ Liczby Liczby::Silnia()
 
 Liczby Liczby::Potega()
 {
-	int nTmp = VtLiczby[0];
-	Liczby l(nTmp);
+	Liczby l(VtLiczby[0]);
 
 	l = l*l;
 	qDebug() << l.ToString();

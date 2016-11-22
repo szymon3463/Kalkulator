@@ -323,6 +323,18 @@ void MainWindow::ButtonEqualSlot()
 		for (int i = 0; i < vTab.size(); i++)
 		{
 			sWyr = vTab[i];
+			if (sWyr.contains("^") && vTab[i+1] == "2")
+			{
+				Liczby l1(vTab[i - 1]);
+				l1.DebugToConsole();
+
+				l1 = l1 * l1;
+				vTab[i] = l1.ToString();
+				vTab.removeAt(i + 1);
+				vTab.removeAt(i - 1);
+				bFound = true;
+				break;
+			}
 			if (sWyr.contains("^"))
 			{
 				Liczby l1(vTab[i - 1]);
@@ -393,7 +405,7 @@ void MainWindow::ButtonEqualSlot()
 				Liczby l2(vTab[i + 1]);
 				l2.DebugToConsole();
 
-				l1 = l1 + l2;
+ 				l1 = l1 + l2;
 				l1.DebugToConsole();
 
 				vTab[i] = l1.ToString();
@@ -427,8 +439,8 @@ void MainWindow::ButtonEqualSlot()
 
 void MainWindow::ButtonPower2Slot()
 {
-	Liczby l(QString::number(m_pTextEdit->toPlainText().toInt()));
-	m_pTextEdit->setText(l.Potega().ToString());
+	m_pTextEdit->setText(m_pTextEdit->toPlainText() + "^2");
+	bSigns = true;
 }
 
 void MainWindow::ButtonPowerYSlot()
